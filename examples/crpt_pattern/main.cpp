@@ -2,7 +2,7 @@
 #include "JsonParser.hpp"
 #include "XmlParser.hpp"
 
-
+// Функция пример, которая будет вызывать наследников
 template<typename Impl>
 auto parserFile(std::shared_ptr<Impl> parser) {
 	auto result = std::make_pair(parser->getData(), parser->getID());
@@ -11,7 +11,9 @@ auto parserFile(std::shared_ptr<Impl> parser) {
 }
 
 int main() {
+	// создаем JsonParser
 	auto js = std::make_shared<ParserJsonImpl>();
+	// вызываем шаблонную функцию, которая будет в compile-time определять какой метод должен быть вызван
 	auto res =  parserFile(js);
 	std::cout << res.first << " " << res.second << std::endl;
 
